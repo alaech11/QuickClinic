@@ -15,17 +15,17 @@ const addDoctor = async (req,res) => {
 
         //checking for all data to add doctor
         if(!name || !email || !password || !speciality || !degree || !experience || !about || !fees || !address){
-            return res.json({success:false,messege:"Missing Details"})
+            return res.json({success:false,message:"Missing Details"})
         }
 
         //validating email format 
         if(!validator.isEmail(email)){
-            return res.json({success:false,messege:"Please enter a valid email"})
+            return res.json({success:false,message:"Please enter a valid email"})
         }
 
         //validating strong password
         if(password.legth < 8) {
-               return res.json({success:false,messege:"Please enter a strong password"})
+               return res.json({success:false,message:"Please enter a strong password"})
         }
 
         //hashing doctor password
@@ -56,7 +56,7 @@ const addDoctor = async (req,res) => {
 
     }catch(error){
         console.log(error)
-        res.json({success:false,messege:error.message})
+        res.json({success:false,message:error.message})
     }
 }
 
@@ -70,12 +70,12 @@ const loginAdmin = async(req,res) =>{
             const token = jwt.sign(email+password,process.env.JWT_SECRET)
             res.json({success:true,token})
         }else{
-            res.json({success:false,messege:"invalid credentials"})
+            res.json({success:false,message:"invalid credentials"})
         }
 
     }catch(error){
         console.log(error)
-        res.json({success:false,messege:error.message})
+        res.json({success:false,message:error.message})
     }
 }
 

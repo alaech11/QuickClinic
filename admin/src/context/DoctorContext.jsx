@@ -9,10 +9,10 @@ const DoctorContextprovider = (props) => {
     }
 
     return(
-        <DoctorContextprovider value={value}>
+        <DoctorContext.Provider value={value}>
             {props.children}
-        </DoctorContextprovider>
+        </DoctorContext.Provider>
     )
 }
 
-export default DoctorContext
+export default DoctorContextprovider

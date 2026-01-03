@@ -9,10 +9,10 @@ const AppContextprovider = (props) => {
     }
 
     return(
-        <AppContextprovider value={value}>
+        <AppContext.Provider value={value}>
             {props.children}
-        </AppContextprovider>
+        </AppContext.Provider>
     )
 }
 
-export default AppContext
+export default AppContextprovider
