@@ -11,7 +11,7 @@ const Appointment = () => {
   const navigate = useNavigate()
 
   const [docInfo, setDocInfo] = useState(null)
-  const { doctors, currencySymbole, backendUrl, token, getDoctorData } = useContext(AppContext)
+  const { doctors, currencySymbole, backendUrl, token, getDoctorsData } = useContext(AppContext)
   
   // Date selection states
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -340,8 +340,8 @@ const Appointment = () => {
         
         if (data.success) {
             toast.success(data.message)
-            if (getDoctorData) {
-                getDoctorData() // Refresh doctor data
+            if (getDoctorsData) {
+                getDoctorsData() // Refresh doctor data
             }
             navigate('/my-appointments')
         } else {
