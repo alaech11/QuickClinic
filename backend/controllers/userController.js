@@ -96,13 +96,27 @@ const getProfile = async (req,res) =>{
 //api to update user profile 
 const updateProfile = async (req,res) =>{
     try {
-        const {userId, name, phone, address, dob, gender} = req.body
+        const {userId, name, phone, address, dob, gender, hasAllergies, allergies} = req.body
         const imageFile = req.file
 
         if (!name || !phone || !address || !dob || !gender) {
             return res.json({success:false,message:"Data missing"})
         } 
-        await userModel.findByIdAndUpdate(userId,{name,phone,address:JSON.parse(address),dob,gender})
+         // Parse allergies if they exist
+        const parsedAllergies = allergies ? JSON.parse(allergies) : [];
+        
+        const updateData = {
+            name,
+            phone,
+            address: JSON.parse(address),
+            dob,
+            gender,
+            hasAllergies: hasAllergies === 'true',
+            allergies: parsedAllergies
+        }
+
+        // Update user data
+        await userModel.findByIdAndUpdate(userId, updateData)
 
         if (imageFile) {
             //upload image to cloudinary
@@ -197,7 +211,9 @@ message: `You already have an appointment with Dr. ${existingUserAppointment.doc
                 image: userData.image,
                 address: userData.address,
                 dob: userData.dob,
-                gender: userData.gender
+                gender: userData.gender,
+                hasAllergies: userData.hasAllergies || false,
+                allergies: userData.allergies || []
             },
             docData: {
                 _id: docData._id,

@@ -6,12 +6,8 @@ import {assets} from '../../assets/assets'
 import { AppContext } from '../../context/AppContext'
 
 const Dashboard = () => {
-
-
   const {aToken, getDashData, cancelAppointment, dashData} = useContext(AdminContext)
-
-  const {slotDtaeFormat} = useContext(AppContext)
-
+  const {slotDtaeFormat, currency} = useContext(AppContext)
 
   useEffect(()=> {
     if (aToken) {
@@ -22,7 +18,14 @@ const Dashboard = () => {
   return dashData && (
     <div className='m-5'>
       <div className='flex flex-wrap gap-3'>
-
+        {/* Earnings Card - Added */}
+        <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
+          <img className='w-14' src={assets.earning_icon} alt="" />
+          <div>
+            <p className='text-xl font-semibold text-gray-600'>{currency}{dashData.earnings}</p>
+            <p className='text-gray-400'>Total Revenue</p>
+          </div>
+        </div>
 
         <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
           <img className='w-14' src={assets.doctor_icon} alt="" />
@@ -36,19 +39,26 @@ const Dashboard = () => {
           <img className='w-14' src={assets.appointments_icon} alt="" />
           <div>
             <p className='text-xl font-semibold text-gray-600'>{dashData.appointments}</p>
-            <p className='text-gray-400'>Appointments</p>
+            <p className='text-gray-400'>Total Appointments</p>
           </div>
         </div>
 
+        {/* Completed Appointments Card - Added */}
+        <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
+          <img className='w-14' src={assets.tick_icon} alt="" />
+          <div>
+            <p className='text-xl font-semibold text-gray-600'>{dashData.completedAppointments}</p>
+            <p className='text-gray-400'>Completed Appointments</p>
+          </div>
+        </div>
 
         <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
           <img className='w-14' src={assets.patients_icon} alt="" />
           <div>
             <p className='text-xl font-semibold text-gray-600'>{dashData.patients}</p>
-            <p className='text-gray-400'>Patient</p>
+            <p className='text-gray-400'>Patients</p>
           </div>
         </div>
-
       </div>
 
       <div className='bg-white'>
@@ -76,8 +86,6 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
-
-
     </div>
   )
 }

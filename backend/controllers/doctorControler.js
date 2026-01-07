@@ -127,25 +127,26 @@ const doctorDashboard = async (req,res) =>{
     try {
         const {docId} = req.body
         const appointments = await appointmentModel.find({docId})
-        let earnings = 0
-
-        appointments.map((item)=>{
+        
+        // Count completed appointments instead of calculating earnings
+        let completedAppointments = 0
+        appointments.forEach((item)=>{
             if (item.isCompleted) {
-                earnings += item.amount
+                completedAppointments += 1
             }
         })
 
         let patients = []
 
-        appointments.map((item)=>{
+        appointments.forEach((item)=>{
             if (!patients.includes(item.userId)) {
                 patients.push(item.userId)
             }
         })
 
         const dashData = {
-            earnings,
-            appointments:appointments.length,
+            completedAppointments: completedAppointments, // Changed from earnings to completedAppointments
+            appointments: appointments.length,
             patients: patients.length,
             latestAppointment: appointments.reverse().slice(0,5)
         }

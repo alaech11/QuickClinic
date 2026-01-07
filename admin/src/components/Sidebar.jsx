@@ -7,9 +7,7 @@ import { DoctorContext } from '../context/DoctorContext'
 const Sidebar = () => {
 
     const {aToken} = useContext(AdminContext)
-
-     const {dToken} = useContext(DoctorContext)
-
+    const {dToken} = useContext(DoctorContext)
 
   return (
     <div className='min-h-screen bg-white border-r'>
@@ -36,16 +34,15 @@ const Sidebar = () => {
                     <p className='hidden md:block'>Doctors List</p>
                 </NavLink>
 
-                <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} to={'/'}>
-                    <img src={assets.add_icon} alt="" />
-                    <p className='hidden md:block'>Add Paitent</p>
-                </NavLink>
+               <NavLink to="/admin/add-patient" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg">
+               <img className="w-5" src={assets.add_icon} alt="Add Patient" />
+               <p>Add Patient</p>
+               </NavLink>
 
-                <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} to={'/'}>
-                    <img src={assets.people_icon} alt="" />
-                    <p className='hidden md:block'>Paitents List</p>
+                <NavLink to="/admin/patients" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg">
+                <img className="w-5" src={assets.list_icon} alt="Patients" />
+                <p>Patients List</p>
                 </NavLink>
-
 
             </ul>
         }
@@ -63,17 +60,16 @@ const Sidebar = () => {
                     <p className='hidden md:block'>Appointments</p>
                 </NavLink>
 
+
+                <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} to={'/doctor-questions'}>
+                    <img src={assets.question_icon || assets.list_icon} alt="Questions" />
+                    <p className='hidden md:block'>Patient Questions</p>
+                </NavLink>
+
                 <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} to={'/doctor-profile'}>
                     <img src={assets.people_icon} alt="" />
                     <p className='hidden md:block'>Profile</p>
                 </NavLink>
-
-                <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} to={'/'}>
-                    <img src={assets.question_icon} alt="" />
-                    <p className='hidden md:block'>Questions</p>
-                </NavLink>
-
-
             </ul>
         }
     </div>
