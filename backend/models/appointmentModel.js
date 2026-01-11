@@ -14,7 +14,7 @@ const appointmentSchema = new mongoose.Schema({
     isCompleted: {type:Boolean, required:false},
 },{minimize:false})
 
-appointmentSchema.index({ docId: 1, slotDate: 1}, { unique: true });
+appointmentSchema.index({ docId: 1, slotDate: 1, slotTime:1}, { unique: true });
 
 const appointmentModel = mongoose.models.appointment || mongoose.model('appointment',appointmentSchema)
 

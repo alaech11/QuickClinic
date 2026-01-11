@@ -169,12 +169,6 @@ const DoctorAppointments = () => {
                     >
                       Complete
                     </button>
-                    <button 
-                      onClick={() => cancelAppointment(item._id)}
-                      className='px-3 py-1 bg-red-100 text-red-700 rounded text-xs hover:bg-red-200'
-                    >
-                      Cancel
-                    </button>
                   </div>
             }
           </div>
