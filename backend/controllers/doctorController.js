@@ -41,7 +41,7 @@ const loginDoctor = async (req,res) => {
             const token = jwt.sign({id:doctor._id},process.env.JWT_SECRET)
             res.json({success:true,token})
         }else{
-             return res.jason({success:false,message:'Invalid credentials'})
+             return res.json({success:false,message:'Invalid credentials'})
         }
 
     } catch (error) {

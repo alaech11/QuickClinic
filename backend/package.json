@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "test:integration": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand tests/integration",
     "start": "node server.js",
     "server": "nodemon server.js"
   },
