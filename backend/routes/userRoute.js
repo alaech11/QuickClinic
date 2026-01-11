@@ -9,6 +9,7 @@ import {
     getQuestionById,
     getQuestionThread 
 } from '../controllers/questionController.js'
+import { getUserPrescriptions, viewPrescription } from '../controllers/prescriptionController.js';
 
 const userRouter = express.Router()
 
@@ -25,5 +26,6 @@ userRouter.get('/questions', authUser, getUserQuestions)
 userRouter.get('/appointment-questions/:appointmentId', authUser, getAppointmentQuestions)
 userRouter.get('/question/:questionId', authUser, getQuestionById)
 userRouter.get('/question-thread/:questionId', authUser, getQuestionThread)
+userRouter.get('/prescriptions', authUser, getUserPrescriptions);
 
 export default userRouter
